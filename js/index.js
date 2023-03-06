@@ -1,8 +1,9 @@
 const cardTop = document.querySelector('#cardTop').content
 const contenido = document.querySelector('#contenido')
 const fragment = document.createDocumentFragment()
+const btnBuscar = document.getElementById('buscador')
+const allBtn = document.querySelector('.mostrarTodo')
 let topTwoHundred = []
-
 
 document.addEventListener('DOMContentLoaded', () => {
     loadTopTwoHundred()
@@ -16,7 +17,6 @@ const loadTopTwoHundred = () => {
             'X-RapidAPI-Host': 'spotify81.p.rapidapi.com'
         }
     };
-    
     fetch('https://spotify81.p.rapidapi.com/top_200_tracks', options)
         .then(response => response.json())
         .then(response => {
@@ -32,9 +32,49 @@ const creacards = () => {
     topTwoHundred.forEach((song) => {
         cardTop.querySelector('img').setAttribute("src", song.trackMetadata.displayImageUri)
         cardTop.querySelector('.songname').textContent = song.trackMetadata.trackName
+        let artists = ''
+        let size = song.trackMetadata.artists.length
+        song.trackMetadata.artists.forEach((item, index) => {
+            if(index === size-1){
+                artists += item.name 
+            } else {
+                artists += item.name + ' / '
+            }
+        })
+        cardTop.querySelector('.artistname').textContent = artists
 
         const clone = cardTop.cloneNode(true)
         fragment.appendChild(clone)
     })
     contenido.appendChild(fragment)
 }
+
+btnBuscar.addEventListener('keypress', () => {
+    document.getElementById("contenido").innerHTML = ''
+    topTwoHundred.forEach((song) => {
+        const index = song.trackMetadata.trackName.indexOf(btnBuscar.value)
+        if(index >= 0) {
+            cardTop.querySelector('img').setAttribute("src", song.trackMetadata.displayImageUri)
+            cardTop.querySelector('.songname').textContent = song.trackMetadata.trackName
+            let artists = ''
+            let size = song.trackMetadata.artists.length
+            song.trackMetadata.artists.forEach((item, index) => {
+                if(index === size-1){
+                    artists += item.name 
+                } else {
+                    artists += item.name + ' / '
+                }
+            })
+            cardTop.querySelector('.artistname').textContent = artists
+
+            const clone = cardTop.cloneNode(true)
+            fragment.appendChild(clone)
+        }
+    })
+    contenido.appendChild(fragment)
+})
+
+allBtn.addEventListener('click', () => {
+    document.getElementById("contenido").innerHTML = ''
+    creacards()
+})

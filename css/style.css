@@ -11,12 +11,12 @@ body {
 }
 
 .menu {
-    width: 30%;
+    width: 20%;
     height: 80vh;
     background-color: rgb(161, 128, 194);
 }
 .contenedor {
-    width: 70%;
+    width: 80%;
     height: 80vh;
     background-color: rgb(126, 202, 126);
 }
@@ -30,16 +30,68 @@ body {
 
 .buscador {
     width: 100%;
-    height: 20%;
+    height: 10%;
+    display: flex;
     background-color: aquamarine;
+    justify-content: center;
+    align-items: center;
 }
 
 .contenido {
     width: 100%;
-    height: 80%;
+    height: 90%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
     overflow-y: scroll;
+    padding: 15px;
+}
+
+.card {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 102px!important;
+}
+
+.imgStyle {
+    width: 100px!important;
+    height: 100px!important;
+}
+
+.cardStyle {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+}
+
+.songname {
+    font-family: 'DM Sans', sans-serif;
+    font-family: 'Tilt Neon', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.artistname {
+    font-family: 'DM Sans', sans-serif;
+    font-family: 'Tilt Neon', cursive;
+    font-size: .8rem;
+    font-weight: 400;
+    color: white;
+}
+
+.imputbuscador {
+    width: 60%;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.mostrarTodo {
+    border-radius: 15px;
+    margin-left: 10px;
+    background-color: white;
+    font-weight: 400;
 }
